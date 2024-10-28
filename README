@@ -1,0 +1,13 @@
+How to start chromium
+
+`startx ./start_browser.sh googlecom`
+
+where `start_browser.sh` is:
+
+```
+#!/bin/sh
+
+xset s off; xset -dpms
+chromium --no-sandbox --user-data-dir="/data/chromium" --window-position=0,0  --window-size=1366,768 --start-maximized --kiosk --incognito --disable-pinch --overscroll-history-navigation=0 --aggressive-cache-discard --disable-applicatio
+n-cache --use-gl=egl "${1}"
+```

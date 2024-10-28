@@ -1,0 +1,17 @@
+define KFEATURE_DESCRIPTION "tweaks for the cm3 lvds"
+define KMACHINE rock-cm3
+define KTYPE standard
+define KARCH arm64
+
+include bsp/rockchip/0001-drm-rockchip-lvds-add-rk3568-support.patch
+include bsp/rockchip/0002-arm64-dts-rockchip-rk356x-add-LVDS-bindings.patch
+include bsp/rockchip/0003-dt-bindings-display-rockchip-lvds-add-compatible-str.patch
+include bsp/rockchip/0004-Added-lvds-panel-support.patch
+include bsp/rockchip/0005-Added-more-info-to-lvds-panel-driver.patch
+include bsp/rockchip/0007-panel-simple-Added-l19v2-panel.patch
+include bsp/rockchip/0008-Disable-hdmi.patch
+include bsp/rockchip/0009-Added-custom-l19v2-dts.patch
+include bsp/rockchip/0010-Add-PHY480MUX.patch
+include bsp/rockchip/0011-Fix-for-usb2.patch
+include bsp/rockchip/panel.cfg
+include bsp/rockchip/drm.cfg

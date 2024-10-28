@@ -1,0 +1,8 @@
+build
+sources/meta-arm
+sources/meta-browser
+sources/meta-clang
+sources/meta-mender
+sources/meta-oe
+sources/meta-rockchip
+sources/poky

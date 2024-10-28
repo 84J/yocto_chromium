@@ -1,0 +1,56 @@
+From 2d47d87862087b7e2470cebc2e460a3c7c96d8f4 Mon Sep 17 00:00:00 2001
+From: Marek Belisko <marek.belisko@gmail.com>
+Date: Fri, 21 Jun 2024 13:55:09 +0200
+Subject: [PATCH] Added more info to lvds-panel driver
+
+Upstream-Status: Inappropriate
+
+Signed-off-by: Marek Belisko <marek.belisko@gmail.com>
+---
+ drivers/gpu/drm/panel/panel-lvds.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/panel/panel-lvds.c b/drivers/gpu/drm/panel/panel-lvds.c
+index 1b8e3156914c..1547793b24dd 100644
+--- a/drivers/gpu/drm/panel/panel-lvds.c
++++ b/drivers/gpu/drm/panel/panel-lvds.c
+@@ -168,11 +168,16 @@ static int panel_lvds_probe(struct platform_device *pdev)
+ 	if (!lvds)
+ 		return -ENOMEM;
+ 
++	dev_info(lvds->dev, "Called probe:%s\n", __func__);
++
+ 	lvds->dev = &pdev->dev;
+ 
+ 	ret = panel_lvds_parse_dt(lvds);
+-	if (ret < 0)
++	if (ret < 0) {
++
++		dev_info(lvds->dev, "Called probe exit:%s - %d\n", __func__, __LINE__);
+ 		return ret;
++	}
+ 
+ 	lvds->supply = devm_regulator_get_optional(lvds->dev, "power");
+ 	if (IS_ERR(lvds->supply)) {
+@@ -219,12 +224,17 @@ static int panel_lvds_probe(struct platform_device *pdev)
+ 		       DRM_MODE_CONNECTOR_LVDS);
+ 
+ 	ret = drm_panel_of_backlight(&lvds->panel);
+-	if (ret)
++	if (ret) {
++	
++		dev_info(lvds->dev, "Called probe exit:%s - %d\n", __func__, __LINE__);
+ 		return ret;
++	}
+ 
+ 	drm_panel_add(&lvds->panel);
+ 
+ 	dev_set_drvdata(lvds->dev, lvds);
++
++	dev_info(lvds->dev, "Probe finished\n");
+ 	return 0;
+ }
+ 
+-- 
+2.25.1
+

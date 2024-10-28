@@ -1,0 +1,79 @@
+From 921673ab2a20f72be60dbc39ce8b2b5d7cf9809b Mon Sep 17 00:00:00 2001
+From: Marek Belisko <marek.belisko@gmail.com>
+Date: Tue, 25 Jun 2024 14:31:13 +0200
+Subject: [PATCH] Disable hdmi
+
+Signed-off-by: Marek Belisko <marek.belisko@gmail.com>
+---
+ .../boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 41 +------------------
+ 1 file changed, 1 insertion(+), 40 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+index 725b7c22d..881c7e67f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+@@ -29,17 +29,7 @@ gmac1_clkin: external-gmac1-clock {
+ 		#clock-cells = <0>;
+ 	};
+ 
+-	hdmi-con {
+-		compatible = "hdmi-connector";
+-		type = "a";
+-
+-		port {
+-			hdmi_con_in: endpoint {
+-				remote-endpoint = <&hdmi_out_con>;
+-			};
+-		};
+-	};
+-
++	
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -166,28 +156,6 @@ &gmac1m0_rgmii_bus
+ 	status = "okay";
+ };
+ 
+-&hdmi {
+-	avdd-0v9-supply = <&vdda0v9_image>;
+-	avdd-1v8-supply = <&vcca1v8_image>;
+-	status = "okay";
+-};
+-
+-&hdmi_in {
+-	hdmi_in_vp0: endpoint {
+-		remote-endpoint = <&vp0_out_hdmi>;
+-	};
+-};
+-
+-&hdmi_out {
+-	hdmi_out_con: endpoint {
+-		remote-endpoint = <&hdmi_con_in>;
+-	};
+-};
+-
+-&hdmi_sound {
+-	status = "okay";
+-};
+-
+ &mdio1 {
+ 	rgmii_phy1: ethernet-phy@0 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+@@ -325,13 +293,6 @@ &vop_mmu {
+ 	status = "okay";
+ };
+ 
+-&vp0 {
+-	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+-		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+-		remote-endpoint = <&hdmi_in_vp0>;
+-	};
+-};
+-
+ &lvds {
+        status = "okay";
+ 
+-- 
+2.25.1
+

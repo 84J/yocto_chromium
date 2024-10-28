@@ -1,0 +1,55 @@
+header:
+  version: 8
+
+repos:
+  poky:
+    url: "https://git.yoctoproject.org/git/poky"
+    refspec: scarthgap
+    path: sources/poky
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-oe:
+    url: "https://github.com/openembedded/meta-openembedded.git"
+    refspec: scarthgap
+    path: sources/meta-oe
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+      meta-multimedia:
+      meta-webserver:
+
+  meta-arm:
+    url: "https://git.yoctoproject.org/meta-arm"
+    refspec: yocto-5.0
+    path: sources/meta-arm
+    layers:
+      meta-arm:
+      meta-arm-toolchain:
+
+  radxa:
+    path: sources/meta-rockchip
+    url: "https://git.yoctoproject.org/meta-rockchip"
+    refspec: scarthgap
+
+  meta-browser:
+    url: "https://github.com/OSSystems/meta-browser.git"
+    refspec: 83cb90c618e24af9bc40fb25baab2a0acd47a560
+    path: sources/meta-browser
+    layers:
+      meta-chromium:
+
+  meta-clang:
+    url: "https://github.com/kraj/meta-clang.git"
+    refspec: scarthgap
+    path: sources/meta-clang
+
+ 
+  meta-a33:
+    path: sources
+    layers:
+      meta-a33:
+

@@ -1,0 +1,57 @@
+From 3864646b7962af9b023fcfa7678dd7c05e38780f Mon Sep 17 00:00:00 2001
+From: invalid_git config <unknown@unknown>
+Date: Tue, 25 Jun 2024 11:13:48 +0000
+Subject: [PATCH] panel-simple: Added l19v2 panel
+
+Signed-off-by: Marek Belisko <marek.belisko@gmail.com>
+
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index e8fe5a694..b5d8644d8 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -4297,6 +4297,32 @@ static const struct panel_desc yes_optoelectronics_ytc700tlag_05_201c = {
+ 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+ };
+ 
++static const struct drm_display_mode y84j_l19tv2_mode = {
++	.clock = 78750,
++	.hdisplay = 1366,
++	.hsync_start = 1366 + 120,
++	.hsync_end = 1366 + 120 + 20,
++	.htotal = 1366 + 120 + 20 + 100,
++	.vdisplay = 768,
++	.vsync_start = 768 + 20,
++	.vsync_end = 768 + 20 + 10,
++	.vtotal = 768 + 20 + 10 + 10,
++	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
++};
++
++static const struct panel_desc y84j_l19tv2 = {
++	.modes = &y84j_l19tv2_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 410,
++		.height = 230,
++	},
++	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
++	.connector_type = DRM_MODE_CONNECTOR_LVDS,
++};
++
+ static const struct drm_display_mode arm_rtsm_mode[] = {
+ 	{
+ 		.clock = 65000,
+@@ -4750,6 +4776,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "yes-optoelectronics,ytc700tlag-05-201c",
+ 		.data = &yes_optoelectronics_ytc700tlag_05_201c,
++	}, {
++		.compatible = "84j,l19tv2",
++		.data = &y84j_l19tv2,
+ 	}, {
+ 		/* Must be the last entry */
+ 		.compatible = "panel-dpi",
+-- 
+2.25.1
+

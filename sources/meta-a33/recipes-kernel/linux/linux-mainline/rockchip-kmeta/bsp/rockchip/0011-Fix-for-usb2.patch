@@ -1,0 +1,40 @@
+From 464a223b550c67bcbd77068627d1edc95e7ca641 Mon Sep 17 00:00:00 2001
+From: Marek Belisko <marek.belisko@gmail.com>
+Date: Thu, 4 Jul 2024 11:48:36 +0200
+Subject: [PATCH] Fix for usb2
+
+Signed-off-by: Marek Belisko <marek.belisko@gmail.com>
+---
+ .../dts/rockchip/rk3566-radxa-cm3-io-l19v2.dts   | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io-l19v2.dts b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io-l19v2.dts
+index aeabefa5b..135a85129 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io-l19v2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io-l19v2.dts
+@@ -254,6 +254,22 @@ &uart2 {
+ 	status = "okay";
+ };
+ 
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
++
++&usb2phy0 {
++	status = "okay";
++};
++
+ &usb2phy0_host {
+ 	phy-supply = <&vcc5v0_usb30>;
+ 	status = "okay";
+-- 
+2.25.1
+
