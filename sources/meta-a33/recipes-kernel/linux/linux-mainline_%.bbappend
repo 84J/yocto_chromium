@@ -1,1 +1,1 @@
-SRC_URI:append = " file://cm3-lvds.scc"
+#SRC_URI:append = " file://cm3-lvds.scc"

@@ -1,0 +1,33 @@
+header:
+  version: 8
+  includes:
+    - repos-rockchip.yml
+
+machine: soquartz-64
+distro: poky
+target: a33-som-image
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+
+local_conf_header:
+  custom: |
+    INHERIT += "rm_work"
+    IMAGE_FEATURES += "debug-tweaks"
+    DISTRO_FEATURES:append = " wifi usrmerge opengl"
+    DISTRO_FEATURES:remove = "bluetooth irda nfs pci nfc 3g ptest multiarch wayland vulkan pulseaudio bluez5"
+    # wifi firmware to be set
+    RK_WIFIBT_FIRMWARES = " \
+        brcm-tools \
+        rkwifibt-firmware-ap6255-wifi \
+        rkwifibt-firmware-ap6255-bt"
+
+    PREFERRED_PROVIDER_virtual/kernel = "linux-mainline"
+  systemd: |
+    DISTRO_FEATURES:append = " systemd"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+    VIRTUAL-RUNTIME_initscripts = ""
